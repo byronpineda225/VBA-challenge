@@ -1,6 +1,8 @@
 # VBA-challenge
 Byron's VBA Scripting work
-In this homework assignment you will use VBA scripting to analyze real stock market data. 
+
+In this homework assignment you use VBA scripting to analyze real stock market data. 
+
 Create a script that will loop through all the stocks for one year and output the following information.
 
 The ticker symbol.
