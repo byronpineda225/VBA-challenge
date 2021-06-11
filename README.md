@@ -1,16 +1,39 @@
 # VBA-challenge
 Byron's VBA Scripting work
 
-In this homework assignment you use VBA scripting to analyze real stock market data. 
-
-Create a script that will loop through all the stocks for one year and output the following information.
-
-The ticker symbol.
-
-Yearly change from opening price at the beginning of a given year to the closing price at the end of that year.
-
-The percent change from opening price at the beginning of a given year to the closing price at the end of that year.
-
-The total stock volume of the stock.
-
-You should also have conditional formatting that will highlight positive change in green and negative change in red.
+'============================================
+'
+' Author: Byron Pineda
+' Date: 6/10/2021
+'
+'============================================
+'
+'A  VBA script was created that loops through all stock worksheets by year and
+' generates key information relating to ticker, yearly change, percentage
+' change, and total stock volume.
+'
+' The yearly change is measured as the change from the stock's opening
+' price at the beginning of a given year to the closing price at the end of
+' that year.
+'
+' The percentage change is the differential from the opening price at the
+' beginning of a given year to its closing price at the end of that year.
+'
+' Also the total volume of the stock is measured by ticker for a given year.
+'
+' The yearly change is colored to indicate losses, gains, or zero changes.
+' A green Yearly Change cell indicates a positive change; a red Yearly
+' Change cell indicates a negative change; and a yellow Yearly Change
+' indicates a zero change.
+'
+' Just as important credit is due to the coding logic/methods
+' borrowed from VBA Session 3 class activities notably #6 and #7 and
+' used for this homework.  Those provided us with logic we could implement
+' for checking the next row against current row and processing a batch
+' of worksheets amongst other many other concepts such as the
+' importance of commenting on your code.
+'
+' And finally credit goes to our study group that collaborated on this challenging
+' assignment.
+'
+'============================================
