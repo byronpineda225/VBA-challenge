@@ -1,3 +1,4 @@
+Attribute VB_Name = "Module1"
 Sub Stock_Evaluations()
 
 '============================================
@@ -7,7 +8,7 @@ Sub Stock_Evaluations()
 '
 '============================================
 '
-' A VBA script was created that loops through all stock worksheets by year and
+'A  VBA script was created that loops through all stock worksheets by year and
 ' generates key information relating to ticker, yearly change, percentage
 ' change, and total stock volume.
 '
