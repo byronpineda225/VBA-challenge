@@ -19,10 +19,13 @@ The yearly change is colored to indicate losses, gains, or zero changes. A green
 indicates a positive change; a red Yearly Change cell indicates a negative change; and a yellow Yearly Change
 indicates a zero change.
 
- Just as important credit is due to the coding logic/methods borrowed from VBA Session 3 class activities 
- notably #6 and #7 and used for this homework.  Those provided us with logic we could implement
- for checking the next row against current row and processing a batch of worksheets amongst other many 
- other concepts such as the importance of commenting on your code.
+As part of the Bonus section the VBA script will run on all worksheets, every year, just by running the 
+script once.  A message box pops up after completion indicating that all worksheets have been processed.
 
- And finally credit goes to our study group that collaborated on this challenging assignment.
+Just as important credit is due to the coding logic/methods borrowed from VBA Session 3 class activities 
+notably #6 and #7 and used for this homework.  Those provided us with logic we could implement
+for checking the next row against current row and processing a batch of worksheets amongst other many 
+other concepts such as the importance of commenting on your code.
+
+And finally credit goes to our study group that collaborated on this challenging assignment.
 
