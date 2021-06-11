@@ -1,9 +1,7 @@
 Byron's VBA Scripting work
 
-'============================================
-
- Author: Byron Pineda
- Date: 6/10/2021
+Author: Byron Pineda
+Date: 6/10/2021
 
 
 A VBA script was created that loops through all stock worksheets by year and generates key information 
