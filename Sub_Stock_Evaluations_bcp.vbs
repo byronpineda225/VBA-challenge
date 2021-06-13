@@ -3,13 +3,15 @@ Sub Stock_Evaluations()
 '============================================
 '
 ' Author: Byron Pineda
-' Date: 6/10/2021
+' Date: 6/12/2021
 '
 '============================================
 '
 ' A VBA script was created that loops through all stock worksheets by year and
 ' generates key information relating to ticker, yearly change, percentage
-' change, and total stock volume.
+' change, and total stock volume. In addition, Bonus items were implemented
+' for obtaining greatest total volume by ticker; greatest percentage increase;
+' and greatest percentage decrease.
 '
 ' The yearly change is measured as the change from the stock's opening
 ' price at the beginning of a given year to the closing price at the end of
@@ -25,19 +27,22 @@ Sub Stock_Evaluations()
 ' Change cell indicates a negative change; and a yellow Yearly Change
 ' indicates a zero change.
 '
-' As part of the Bonus section the VBA script will run on all worksheets, every
+' All of the Bonus section was completed successfully.  The greatest percentage
+' increase/decrease and the greated total volume were added to the secondary
+' summary table.  As stated earlier, the VBA script will run on all worksheets, every
 ' year, just by running the script once.  A message box pops up after completion
-' indicating that all worksheets have been processed.
+' indicating that all worksheets have been processed to alert the user.
 '
-' Just as important credit is due to the coding logic/methods
-' borrowed from VBA Session 3 class activities notably #6 and #7 and
-' used for this homework.  Those provided us with logic we could implement
-' for checking the next row against current row and processing a batch
-' of worksheets amongst other many other concepts such as the
-' importance of commenting on your code.
+' I need to pay credit for VBA Session 3 class activities notably #6 and #7 that
+' played a key role in allowing this homework to be successfully completed. Those
+' activities provided basic code and structures that were  implemented for this homework.
+' Those were carefully curated enabling such key concepts as checking the next row
+' against the current row and processing a batch of worksheets with one run command.
+' Those takeaways saved countless hours!  In addition those activities showed the importance
+' of commenting of code and making it easier to follow the logic.
 '
-' And finally credit goes to our study group that collaborated on this challenging
-' assignment.
+' Finally credit must be given to our study group that collaborated on concepts for this
+' challenging assignment.
 '
 '============================================
  
@@ -80,15 +85,18 @@ Sub Stock_Evaluations()
   ' Bonus column headers for another summary table
   ' with metrics for Greatest % increase/decrease, and
   ' Greatest total volume.
-   
-    '    ws.Cells(1, 16).Value = "Ticker"
-    '    ws.Cells(1, 17).Value = "Value"
+  
+       ws.Cells(2, 15).Value = "Greatest % Increase"
+       ws.Cells(3, 15).Value = "Greatest % Decrease"
+       ws.Cells(4, 15).Value = "Greatest Total Volume"
+       ws.Cells(1, 16).Value = "Ticker"
+       ws.Cells(1, 17).Value = "Value"
   
   'Set the column widths so numbers are not squished!
   ' Right align the Yearly Change, Percentage Change,
   ' and Total Stock Volume headers in the summary table.
   
-        ws.Columns("I").ColumnWidth = 15
+        ws.Columns("I").ColumnWidth = 12
         ws.Columns("J").ColumnWidth = 15
         ws.Columns("J").Cells.HorizontalAlignment = xlHAlignRight
         ws.Columns("K").ColumnWidth = 15
@@ -96,10 +104,11 @@ Sub Stock_Evaluations()
         ws.Columns("L").ColumnWidth = 20
         ws.Columns("L").Cells.HorizontalAlignment = xlHAlignRight
         
-     '  Bonus columns
-     '  ws.Columns("P").ColumnWidth = 15
-     '  ws.Columns("Q").ColumnWidth = 15
-     '  ws.Columns("Q").Cells.HorizontalAlignment = xlHAlignRight
+     '  Bonus columns Ticker/Value etc.
+       ws.Columns("O").ColumnWidth = 20
+       ws.Columns("P").ColumnWidth = 12
+       ws.Columns("Q").ColumnWidth = 15
+       ws.Columns("Q").Cells.HorizontalAlignment = xlHAlignRight
 
   ' Keep track of the location for each ticker in the summary table
   ' Set this initially at 2 as the column headers are in the first row
@@ -210,7 +219,78 @@ Sub Stock_Evaluations()
      
   Next i
   
- ' Start with next worksheet
+ '===============================================
+ ' This section is mainly devoted to getting the data elements
+ ' for the Bonus section.
+ '===============================================
+ 
+ ' Determine the Last Row of the Summary Table's Column J
+ ' This is needed to know the number of rows to scan against.
+ 
+  LastRow2 = ws.Cells(Rows.Count, 9).End(xlUp).Row
+ 
+'**********************************************************************
+' Now fetch the greatest % increase for the Bonus Summary Table
+' but first get the needed variables and initialize them.
+
+ Dim Tckr As String
+Dim GreatestPerIncr As Double
+Tckr = ""
+GreatestPerIncr = 0
+
+For r = 2 To LastRow2
+        If ws.Cells(r, 11) > GreatestPerIncr Then
+            Tckr = ws.Cells(r, 9)
+            GreatestPerIncr = ws.Cells(r, 11)
+        End If
+Next r
+
+' Output the greatest % Increase and the associated ticker
+' Remember to change to FormatPercent for greatest % increase
+ws.Cells(2, 16).Value = Tckr
+ws.Cells(2, 17).Value = FormatPercent(GreatestPerIncr, 2)
+
+'**********************************************************************
+' Now fetch the greatest % decrease for the Bonus Summary Table
+' but first set and initialize the variables.
+
+Dim GreatestPerDecr As Double
+GreatestPerDecr = 0
+
+For p = 2 To LastRow2
+        If ws.Cells(p, 11) < GreatestPerDecr Then
+            Tckr = ws.Cells(p, 9)
+            GreatestPerDecr = ws.Cells(p, 11)
+        End If
+Next p
+
+' Output the greatest % decrease and the associated ticker
+' Remember to change to FormatPercent for greatest % decrease
+ws.Cells(3, 16).Value = Tckr
+ws.Cells(3, 17).Value = FormatPercent(GreatestPerDecr, 2)
+
+'**********************************************************************
+ ' As part of the Bonus fetch the Greatest Total Volume for the second summary table.
+ ' Run a bubble sort against column J. This is not very efficient but the data
+ ' set in that column is relatively small.
+ 
+Dim MaxTotVolume As Double
+MaxTotVolume = 0
+  
+For q = 2 To LastRow2
+        If ws.Cells(q, 12) > MaxTotVolume Then
+            Tckr = ws.Cells(q, 9)
+            MaxTotVolume = ws.Cells(q, 12)
+        End If
+Next q
+
+' Output the greatest total volume and the associated ticker
+ws.Cells(4, 16).Value = Tckr
+ws.Cells(4, 17).Value = MaxTotVolume
+
+'**********************************************************************
+
+ ' Start processing the next worksheet
  
 Next ws
 
